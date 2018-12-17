@@ -2,5 +2,6 @@
     <string name="app_name">WhatsMyData</string>
 
     <string name="info_use_whatsapp">Bitte gehe auf WhatsApp und exportiere deinen Chat um diese App zu nutzen</string>
+    <string name="generate_random_message">Zufällige Nachricht</string>
 
 </resources>

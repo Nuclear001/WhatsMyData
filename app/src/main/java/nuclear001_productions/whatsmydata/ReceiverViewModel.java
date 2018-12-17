@@ -3,7 +3,6 @@ package nuclear001_productions.whatsmydata;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.net.Uri;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;

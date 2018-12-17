@@ -8,22 +8,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ReceiverActivity extends AppCompatActivity {
 
     private TextView textViewMessageCounter;
+    private TextView textViewRandomMessage;
+    private Button buttonRandomMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,8 @@ public class ReceiverActivity extends AppCompatActivity {
 
         //Init layout
         textViewMessageCounter = findViewById(R.id.text_view_message_counter);
+        textViewRandomMessage = findViewById(R.id.text_view_random_message);
+        buttonRandomMessage = findViewById(R.id.button_random_message);
 
 
         Intent incomingData = getIntent();
@@ -59,10 +59,20 @@ public class ReceiverActivity extends AppCompatActivity {
         });
     }
 
-    public void analyzeData(List<String> chat) {
+    public void analyzeData(final List<String> chat) {
         // Do stuff
         System.out.println("It worked!");
         textViewMessageCounter.setText("Nachrichten: " + chat.size());
+        buttonRandomMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewRandomMessage.setText("Zufallsnachricht: " + chat.get(randomBetween(chat.size() - 1)));
+            }
+        });
+    }
+
+    private int randomBetween(int max) {
+        return new Random().nextInt(max);
     }
 
 }

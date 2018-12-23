@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Random;
 
+import nuclear001_productions.whatsmydata.chat.data.WhatsAppChatDataHolder;
+
 public class ReceiverActivity extends AppCompatActivity {
 
     private TextView textViewMessageCounter;
@@ -51,22 +53,22 @@ public class ReceiverActivity extends AppCompatActivity {
                 return (T) new ReceiverViewModel(null);
             }
         }).get(ReceiverViewModel.class);
-        viewModel.getData().observe(this, new Observer<List<String>>() {
+        viewModel.getData().observe(this, new Observer<WhatsAppChatDataHolder>() {
             @Override
-            public void onChanged(@Nullable List<String> strings) {
-                analyzeData(strings);
+            public void onChanged(@Nullable WhatsAppChatDataHolder data) {
+                analyzeData(data);
             }
         });
     }
 
-    public void analyzeData(final List<String> chat) {
+    public void analyzeData(final WhatsAppChatDataHolder holder) {
         // Do stuff
         System.out.println("It worked!");
-        textViewMessageCounter.setText("Nachrichten: " + chat.size());
+        textViewMessageCounter.setText("Nachrichten: " + holder.getWhatsAppUserMessages().size());
         buttonRandomMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewRandomMessage.setText("Zufallsnachricht: " + chat.get(randomBetween(chat.size() - 1)));
+                textViewRandomMessage.setText("Zufallsnachricht: " + holder.getWhatsAppUserMessages().get(randomBetween(holder.getWhatsAppUserMessages().size())));
             }
         });
     }

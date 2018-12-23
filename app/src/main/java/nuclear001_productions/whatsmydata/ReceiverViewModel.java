@@ -5,15 +5,14 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.os.AsyncTask;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+
+import nuclear001_productions.whatsmydata.chat.data.WhatsAppChatDataHolder;
+import nuclear001_productions.whatsmydata.chat.parser.WhatsAppChatParser;
 
 public class ReceiverViewModel extends ViewModel {
 
-    private MutableLiveData<List<String>> data;
+    private MutableLiveData<WhatsAppChatDataHolder> data;
     private InputStream chatStream;
 
     public ReceiverViewModel(InputStream stream) {
@@ -22,7 +21,7 @@ public class ReceiverViewModel extends ViewModel {
         new ChatParser().execute();
     }
 
-    public LiveData<List<String>> getData() {
+    public LiveData<WhatsAppChatDataHolder> getData() {
         return data;
     }
 
@@ -30,21 +29,14 @@ public class ReceiverViewModel extends ViewModel {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            ArrayList<String> chatList = new ArrayList<>();
+
             try {
-                BufferedReader stream = new BufferedReader(new InputStreamReader(chatStream));
-
-                String line;
-
-                while ((line = stream.readLine()) != null) {
-                    chatList.add(line);
-                }
-
+                WhatsAppChatDataHolder holder = new WhatsAppChatParser(chatStream).analyzeChat();
+                data.postValue(holder);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            data.postValue(chatList);
             return null;
         }
     }

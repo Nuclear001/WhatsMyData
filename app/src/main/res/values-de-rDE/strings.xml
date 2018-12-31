@@ -4,5 +4,8 @@
     <string name="info_use_whatsapp">Bitte gehe auf WhatsApp und exportiere deinen Chat um diese App zu nutzen</string>
     <string name="generate_random_message">Zufällige Nachricht</string>
     <string name="random_message">Drück den Knopf</string>
+    <string name="example_message">Nachrichten: 18105</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_activity_slider">SliderActivity</string>
 
 </resources>

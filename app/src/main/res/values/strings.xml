@@ -6,10 +6,11 @@
     <string name="generate_random_message">random message</string>
     <string name="random_message">press the button</string>
     <string name="title_activity_slider">SliderActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_1" translatable="false">Tab 1</string>
+    <string name="tab_text_2" translatable="false">Tab 2</string>
+    <string name="tab_text_3" translatable="false">Tab 3</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="example_message">Messages: 18105</string>
 
 </resources>
